@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		D3DC684B23BE785700ED2C6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DC684A23BE785700ED2C6A /* AppDelegate.swift */; };
 		D3DC684D23BE785700ED2C6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DC684C23BE785700ED2C6A /* SceneDelegate.swift */; };
-		D3DC684F23BE785700ED2C6A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DC684E23BE785700ED2C6A /* ViewController.swift */; };
+		D3DC684F23BE785700ED2C6A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DC684E23BE785700ED2C6A /* HomeViewController.swift */; };
 		D3DC685223BE785700ED2C6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3DC685023BE785700ED2C6A /* Main.storyboard */; };
 		D3DC685423BE785800ED2C6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3DC685323BE785800ED2C6A /* Assets.xcassets */; };
 		D3DC685723BE785800ED2C6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3DC685523BE785800ED2C6A /* LaunchScreen.storyboard */; };
+		D3DC685F23BE792700ED2C6A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DC685E23BE792700ED2C6A /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D3DC684723BE785700ED2C6A /* tomato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tomato.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3DC684A23BE785700ED2C6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3DC684C23BE785700ED2C6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D3DC684E23BE785700ED2C6A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D3DC684E23BE785700ED2C6A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D3DC685123BE785700ED2C6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D3DC685323BE785800ED2C6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3DC685623BE785800ED2C6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3DC685823BE785800ED2C6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3DC685E23BE792700ED2C6A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,8 @@
 			children = (
 				D3DC684A23BE785700ED2C6A /* AppDelegate.swift */,
 				D3DC684C23BE785700ED2C6A /* SceneDelegate.swift */,
-				D3DC684E23BE785700ED2C6A /* ViewController.swift */,
+				D3DC684E23BE785700ED2C6A /* HomeViewController.swift */,
+				D3DC685E23BE792700ED2C6A /* SettingsViewController.swift */,
 				D3DC685023BE785700ED2C6A /* Main.storyboard */,
 				D3DC685323BE785800ED2C6A /* Assets.xcassets */,
 				D3DC685523BE785800ED2C6A /* LaunchScreen.storyboard */,
@@ -138,9 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3DC684F23BE785700ED2C6A /* ViewController.swift in Sources */,
+				D3DC684F23BE785700ED2C6A /* HomeViewController.swift in Sources */,
 				D3DC684B23BE785700ED2C6A /* AppDelegate.swift in Sources */,
 				D3DC684D23BE785700ED2C6A /* SceneDelegate.swift in Sources */,
+				D3DC685F23BE792700ED2C6A /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,13 +289,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2226GXAC34;
+				DEVELOPMENT_TEAM = 6HPN3MZFM4;
 				INFOPLIST_FILE = tomato/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shogun.tomato;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shogundigital.tomato;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -303,13 +307,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2226GXAC34;
+				DEVELOPMENT_TEAM = 6HPN3MZFM4;
 				INFOPLIST_FILE = tomato/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.shogun.tomato;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shogundigital.tomato;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
