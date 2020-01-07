@@ -8,17 +8,6 @@
 
 import UIKit
 
-enum PomodoroState: String {
-    case pomodoro = "Pomodoro"
-    case rest = "Break"
-    case longRest = "Long Break"
-}
-
-private struct TimePeriod {
-   static let POMODORO = 1 * 30
-   static let REST = 1 * 10
-   static let LONG_REST = 1 * 30
-}
 
 class HomeViewController: UIViewController {
     
@@ -28,18 +17,15 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     
+    private var viewModel: PomodoroViewModel = PomodoroViewModel()
+    
     var timer: Timer? = nil
-    var pomodoroState: PomodoroState = .pomodoro
-    var numPomodoros: Int = 0
-    var secondsLeft: Int = 0
-    var finishTimestamp: Int? = nil
 
     override func viewDidLoad() {
         // Do any additional setup after loading the view.
         super.viewDidLoad()
-        stopButton.isEnabled = false
-        secondsLeft = TimePeriod.POMODORO
-        pomodoroStateLabel.text = pomodoroState.rawValue + "."
+
+        // Create notification center
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound]) { granted, error in
             // Enable or disable features based on authorization.
@@ -57,12 +43,28 @@ class HomeViewController: UIViewController {
             name: UIApplication.willEnterForegroundNotification,
             object: nil
         )
-        print("viewDidLoad")
+        
+        updateView(with: viewModel)
+    }
+    
+    func updateView(with state: PomodoroViewModel) {
+        // Update time left
+        let minutes = state.secondsLeft / 60
+        let seconds = state.secondsLeft % 60
+        minuteLabel.text = String(minutes)
+        secondLabel.text = String(seconds)
+        
+        // Update pomodoro state
+        pomodoroStateLabel.text = state.pomodoroState.rawValue
+        
+        // Update stop and start buttons
+        stopButton.isEnabled = viewModel.started
+        startButton.isEnabled = !viewModel.started
     }
     
     @objc func storeAppState() {
         print("Application Resign Active")
-        finishTimestamp = Int(NSDate().timeIntervalSince1970) + secondsLeft
+        viewModel.finishTimestamp = Int(NSDate().timeIntervalSince1970) + viewModel.secondsLeft
 
         // Stop the timer
         invalidateTimer()
@@ -71,29 +73,29 @@ class HomeViewController: UIViewController {
     @objc func restoreAppState() {
         print("Application Foreground Active")
         // TODO: LEARN MORE ABOUT SWIFT OPTIONALS
-        if finishTimestamp == nil {
+        if viewModel.finishTimestamp == nil || !viewModel.started {
             return
         }
         
         // Remaining time left in timer
-        let remaining = finishTimestamp! - Int(NSDate().timeIntervalSince1970)
+        let remaining = viewModel.finishTimestamp! - Int(NSDate().timeIntervalSince1970)
         
-        // TODO: fix to figure out correct time
-        secondsLeft = remaining
-        self.calculateTimeUnits()
-        
-        // Start the timer again
+        viewModel.secondsLeft = remaining <= 0 ? 0 : remaining
+
+        updateView(with: viewModel)
+
         createTimer()
     }
 
     func scheduleTimerFinishedNotification() {
         // Create Notification Content
         let content = UNMutableNotificationContent()
-        content.title = "\(self.pomodoroState.rawValue) Finished!"
+        content.title = "\(viewModel.pomodoroState.rawValue) Finished!"
         content.body = ""
+        content.sound = UNNotificationSound.default
         
         // Create the trigger
-        let date = Date(timeIntervalSinceNow: Double(secondsLeft))
+        let date = Date(timeIntervalSinceNow: Double(viewModel.secondsLeft))
         let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
         
@@ -109,7 +111,7 @@ class HomeViewController: UIViewController {
     }
 
     func showAlert() {
-        let alert = UIAlertController(title: "\(self.pomodoroState.rawValue) Finished!", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "\(viewModel.pomodoroState.rawValue) Finished!", message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { action in
             self.dismiss(animated: true, completion: nil)
         }
@@ -117,58 +119,32 @@ class HomeViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func calculateTimeUnits() -> Void {
-        let minutes = secondsLeft / 60
-        let seconds = secondsLeft % 60
-        minuteLabel.text = String(minutes)
-        secondLabel.text = String(seconds)
-    }
-    
-    func updatePomodoroState() -> Void {
-        switch pomodoroState {
-            case .pomodoro:
-                numPomodoros += 1
-                // Timer 25 minutes
-                secondsLeft = TimePeriod.POMODORO
-                pomodoroState = .rest
-                break
-            case .rest:
-                // Timer 5 minutes
-                secondsLeft = TimePeriod.REST
-                pomodoroState = numPomodoros == 5 ? .longRest : .pomodoro
-            break
-            case .longRest:
-                // Timer 15 minutes
-                secondsLeft = TimePeriod.LONG_REST
-                pomodoroState = .pomodoro
-                numPomodoros = 0
-        }
-        
-        pomodoroStateLabel.text = pomodoroState.rawValue
-        calculateTimeUnits()
-    }
-    
     func createTimer() {
+        // Stop the current timer
         invalidateTimer()
+        
+        // Update the buttons
+        viewModel.started = true
+        updateView(with: self.viewModel)
+        
         scheduleTimerFinishedNotification()
         
+        // Start the timer
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             print("Timer fired!")
-            self.secondsLeft -= 1
-            if self.secondsLeft < 0 {
+            self.viewModel.secondsLeft -= 1
+            if self.viewModel.secondsLeft <= 0 {
                 self.showAlert()
                 self.stopTimerActions()
-                self.updatePomodoroState()
-                return
+                self.viewModel.updatePomodoroState()
+                self.viewModel.started = false
             }
-            self.calculateTimeUnits()
+            self.updateView(with: self.viewModel)
         }
     }
 
     @IBAction func startTimer(_ sender: UIButton) {
         createTimer()
-        stopButton.isEnabled = true
-        startButton.isEnabled = false
     }
     
     func invalidateTimer() -> Void {
@@ -178,15 +154,14 @@ class HomeViewController: UIViewController {
     
     func stopTimerActions() {
         invalidateTimer()
-        print("Timer stopped!")
-        stopButton.isEnabled = false
-        startButton.isEnabled = true
         // Prevent the timer notification being fired when the timer is stopped
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["pomodoroTimer"])
     }
 
     @IBAction func stopTimer(_ sender: UIButton) -> Void {
         stopTimerActions()
+        viewModel.started = false
+        updateView(with: viewModel)
     }
 }
 

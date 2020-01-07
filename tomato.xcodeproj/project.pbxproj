@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D34ACDEE23C492B90033E594 /* PomodoroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34ACDED23C492B90033E594 /* PomodoroViewModel.swift */; };
 		D3DC684B23BE785700ED2C6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DC684A23BE785700ED2C6A /* AppDelegate.swift */; };
 		D3DC684D23BE785700ED2C6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DC684C23BE785700ED2C6A /* SceneDelegate.swift */; };
 		D3DC684F23BE785700ED2C6A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DC684E23BE785700ED2C6A /* HomeViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D34ACDED23C492B90033E594 /* PomodoroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroViewModel.swift; sourceTree = "<group>"; };
 		D3DC684723BE785700ED2C6A /* tomato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tomato.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3DC684A23BE785700ED2C6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3DC684C23BE785700ED2C6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			children = (
 				D3DC684A23BE785700ED2C6A /* AppDelegate.swift */,
 				D3DC684C23BE785700ED2C6A /* SceneDelegate.swift */,
+				D34ACDED23C492B90033E594 /* PomodoroViewModel.swift */,
 				D3DC684E23BE785700ED2C6A /* HomeViewController.swift */,
 				D3DC685E23BE792700ED2C6A /* SettingsViewController.swift */,
 				D3DC685023BE785700ED2C6A /* Main.storyboard */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D34ACDEE23C492B90033E594 /* PomodoroViewModel.swift in Sources */,
 				D3DC684F23BE785700ED2C6A /* HomeViewController.swift in Sources */,
 				D3DC684B23BE785700ED2C6A /* AppDelegate.swift in Sources */,
 				D3DC684D23BE785700ED2C6A /* SceneDelegate.swift in Sources */,
