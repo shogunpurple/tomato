@@ -11,12 +11,15 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    
+    @IBOutlet weak var pomodoroStateIcon: UIImageView!
+    @IBOutlet weak var startStopButton: UIButton!
     @IBOutlet weak var pomodoroStateLabel: UILabel!
+    @IBOutlet weak var nextPomodoroStateLabel: UILabel!
+    @IBOutlet weak var numPomodorosLabel: UILabel!
     @IBOutlet weak var minuteLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
-    @IBOutlet weak var startButton: UIButton!
-    @IBOutlet weak var stopButton: UIButton!
-    
+
     private var viewModel: PomodoroViewModel = PomodoroViewModel()
     
     var timer: Timer? = nil
@@ -55,11 +58,14 @@ class HomeViewController: UIViewController {
         secondLabel.text = String(seconds)
         
         // Update pomodoro state
-        pomodoroStateLabel.text = state.pomodoroState.rawValue
+        pomodoroStateLabel.text = "\(state.pomodoroState.rawValue)."
+        nextPomodoroStateLabel.text = state.nextPomodoroState.rawValue
+        numPomodorosLabel.text = (state.numPomodoros + 1).asWord.capitalized
+        pomodoroStateIcon.image = UIImage(named: "\(state.pomodoroState.rawValue).png")
         
         // Update stop and start buttons
-        stopButton.isEnabled = viewModel.started
-        startButton.isEnabled = !viewModel.started
+        let buttonType = viewModel.started ? "Pause" : "Play"
+        startStopButton.setBackgroundImage(UIImage(named: "\(buttonType)Button.png"), for: UIControl.State.normal)
     }
     
     @objc func storeAppState() {
@@ -72,11 +78,9 @@ class HomeViewController: UIViewController {
     
     @objc func restoreAppState() {
         print("Application Foreground Active")
-        // TODO: LEARN MORE ABOUT SWIFT OPTIONALS
-        if viewModel.finishTimestamp == nil || !viewModel.started {
-            return
-        }
-        
+
+        guard viewModel.finishTimestamp != nil || viewModel.started else { return }
+
         // Remaining time left in timer
         let remaining = viewModel.finishTimestamp! - Int(NSDate().timeIntervalSince1970)
         
@@ -143,10 +147,6 @@ class HomeViewController: UIViewController {
         }
     }
 
-    @IBAction func startTimer(_ sender: UIButton) {
-        createTimer()
-    }
-    
     func invalidateTimer() -> Void {
         timer?.invalidate()
         timer = nil
@@ -157,11 +157,23 @@ class HomeViewController: UIViewController {
         // Prevent the timer notification being fired when the timer is stopped
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["pomodoroTimer"])
     }
-
-    @IBAction func stopTimer(_ sender: UIButton) -> Void {
-        stopTimerActions()
-        viewModel.started = false
-        updateView(with: viewModel)
+    
+    @IBAction func startTimer(_ sender: UIButton) {
+        if viewModel.started {
+            stopTimerActions()
+            viewModel.started = false
+            updateView(with: viewModel)
+        } else {
+            createTimer()
+        }
     }
 }
 
+public extension Int {
+  var asWord: String {
+    let numberValue = NSNumber(value: self)
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .spellOut
+    return formatter.string(from: numberValue)!
+  }
+}

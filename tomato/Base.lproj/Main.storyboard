@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Karla-Regular.ttf">
+            <string>Karla-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -15,126 +20,155 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCh-MY-J1m">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="yyI-gu-3jW" userLabel="Pomodoro Info Stack">
+                                <rect key="frame" x="24" y="151" width="370" height="360.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nMv-W9-9WY" userLabel="TimeStackView">
-                                        <rect key="frame" x="50" y="247.5" width="314" height="48"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hUA-Us-PYS">
+                                        <rect key="frame" x="0.0" y="0.0" width="370" height="128"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QxV-SF-o0A">
+                                        <rect key="frame" x="0.0" y="153" width="370" height="58.5"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Pomodoro">
+                                                <attributes>
+                                                    <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    <font key="NSFont" size="50" name="Karla-Bold"/>
+                                                    <font key="NSOriginalFont" size="50" name="Karla-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=".">
+                                                <attributes>
+                                                    <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    <font key="NSFont" size="50" name="Karla-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C6n-rb-jPF" userLabel="Next Up Stack">
+                                        <rect key="frame" x="0.0" y="236.5" width="370" height="49.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24m-8a-WYX">
-                                                <rect key="frame" x="0.0" y="0.0" width="78.5" height="48"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyV-yl-gUh" userLabel="Next Up">
+                                                <rect key="frame" x="0.0" y="0.0" width="259" height="49.5"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Next Up:">
+                                                        <attributes>
+                                                            <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                            <font key="NSFont" size="42" name="Karla-Bold"/>
+                                                            <font key="NSOriginalFont" size="50" name="Karla-Bold"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MINUTES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ud-hd-Ch9">
-                                                <rect key="frame" x="78.5" y="0.0" width="78.5" height="48"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8o-tx-gc9">
-                                                <rect key="frame" x="157" y="0.0" width="78.5" height="48"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SECONDS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqy-ou-WVx">
-                                                <rect key="frame" x="235.5" y="0.0" width="78.5" height="48"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Break" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hv4-0o-tw9" userLabel="Next State">
+                                                <rect key="frame" x="259" y="0.0" width="111" height="49.5"/>
+                                                <fontDescription key="fontDescription" name="Karla-Regular" family="Karla" pointSize="42"/>
                                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Fl4-kI-Wkl" userLabel="ButtonsStackView">
-                                        <rect key="frame" x="0.0" y="425.5" width="414" height="45"/>
+                                    <stackView opaque="NO" contentMode="center" ambiguous="YES" distribution="fillProportionally" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="WJr-gH-YMm" userLabel="Num Pomodoros Stack">
+                                        <rect key="frame" x="0.0" y="311" width="370" height="49.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNI-gC-2Xb">
-                                                <rect key="frame" x="0.0" y="0.0" width="197" height="45"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <state key="normal" title="Start">
-                                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                </state>
-                                                <state key="disabled">
-                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="startTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J6c-Gg-aBQ"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GCk-o2-88d">
-                                                <rect key="frame" x="217" y="0.0" width="197" height="45"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <state key="normal" title="Stop">
-                                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                </state>
-                                                <state key="disabled">
-                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="startTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O8I-UC-Oay"/>
-                                                    <action selector="stopTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="exy-aT-tlH"/>
-                                                </connections>
-                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAv-aZ-KpO" userLabel="Number of Pomodoros">
+                                                <rect key="frame" x="0.0" y="0.0" width="131" height="49.5"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="One">
+                                                        <attributes>
+                                                            <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                            <font key="NSFont" size="42" name="Karla-Bold"/>
+                                                            <font key="NSOriginalFont" size="50" name="Karla-Bold"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="of Four." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9So-hu-dsh" userLabel="Total Pomodoros">
+                                                <rect key="frame" x="132" y="0.0" width="238" height="49.5"/>
+                                                <fontDescription key="fontDescription" name="Karla-Regular" family="Karla" pointSize="42"/>
+                                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QxV-SF-o0A">
-                                        <rect key="frame" x="207" y="225.5" width="0.0" height="0.0"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="xjc-pq-9Zn" userLabel="Time Stack View">
+                                <rect key="frame" x="20" y="510" width="374" height="119.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUG-dO-1Al" userLabel="Minutes Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="124.5" height="119.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ee3-u3-Ahc" userLabel="Divider">
+                                        <rect key="frame" x="124.5" y="0.0" width="125" height="119.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8o-tx-gc9">
+                                        <rect key="frame" x="249.5" y="0.0" width="124.5" height="119.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                         <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNI-gC-2Xb">
+                                <rect key="frame" x="304" y="731" width="90" height="90"/>
                                 <constraints>
-                                    <constraint firstItem="QxV-SF-o0A" firstAttribute="centerX" secondItem="KCh-MY-J1m" secondAttribute="centerX" id="0dm-ur-5hf"/>
-                                    <constraint firstItem="Fl4-kI-Wkl" firstAttribute="leading" secondItem="KCh-MY-J1m" secondAttribute="leading" id="2C8-Xq-pp3"/>
-                                    <constraint firstItem="Fl4-kI-Wkl" firstAttribute="centerY" secondItem="KCh-MY-J1m" secondAttribute="centerY" id="Ak8-xX-wTe"/>
-                                    <constraint firstAttribute="trailing" secondItem="Fl4-kI-Wkl" secondAttribute="trailing" id="SAt-6F-k2c"/>
-                                    <constraint firstItem="Fl4-kI-Wkl" firstAttribute="top" secondItem="QxV-SF-o0A" secondAttribute="bottom" constant="200" id="TXh-Dg-iuy"/>
-                                    <constraint firstItem="nMv-W9-9WY" firstAttribute="centerX" secondItem="KCh-MY-J1m" secondAttribute="centerX" id="XFZ-L3-Df4"/>
-                                    <constraint firstItem="Fl4-kI-Wkl" firstAttribute="top" secondItem="nMv-W9-9WY" secondAttribute="bottom" constant="130" id="gBQ-kj-8wb"/>
-                                    <constraint firstItem="nMv-W9-9WY" firstAttribute="leading" secondItem="KCh-MY-J1m" secondAttribute="leading" constant="50" id="gFr-qY-8Bp"/>
-                                    <constraint firstAttribute="trailing" secondItem="nMv-W9-9WY" secondAttribute="trailing" constant="50" id="nWs-wY-1OV"/>
+                                    <constraint firstAttribute="height" constant="90" id="gyu-rB-7aY"/>
                                 </constraints>
-                            </view>
+                                <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                <state key="normal" backgroundImage="PlayButton">
+                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="startTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2ZB-0w-OdD"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="KCh-MY-J1m" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0Wz-ZD-9zb"/>
-                            <constraint firstAttribute="trailing" secondItem="KCh-MY-J1m" secondAttribute="trailing" id="Ltw-m9-bpJ"/>
-                            <constraint firstAttribute="bottom" secondItem="KCh-MY-J1m" secondAttribute="bottom" id="PMJ-35-2VX"/>
-                            <constraint firstItem="KCh-MY-J1m" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="tHb-o2-DC0"/>
+                            <constraint firstItem="xjc-pq-9Zn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="0Lh-nA-ya0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xjc-pq-9Zn" secondAttribute="trailing" id="3Kc-8e-to3"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="xjc-pq-9Zn" secondAttribute="bottom" constant="232.5" id="8Pu-cV-TUJ"/>
+                            <constraint firstAttribute="trailing" secondItem="FNI-gC-2Xb" secondAttribute="trailing" constant="14" id="QVl-99-sLI"/>
+                            <constraint firstItem="yyI-gu-3jW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Uwd-xf-FSr"/>
+                            <constraint firstItem="yyI-gu-3jW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="Xwh-db-pOn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yyI-gu-3jW" secondAttribute="trailing" id="ZDG-F3-Z5R"/>
+                            <constraint firstItem="yyI-gu-3jW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="107" id="djF-aw-RqG"/>
+                            <constraint firstAttribute="bottom" secondItem="FNI-gC-2Xb" secondAttribute="bottom" constant="53" id="urI-iZ-w9V"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="minuteLabel" destination="24m-8a-WYX" id="BKB-8s-WvU"/>
+                        <outlet property="minuteLabel" destination="AUG-dO-1Al" id="8pq-Bb-gBH"/>
+                        <outlet property="nextPomodoroStateLabel" destination="Hv4-0o-tw9" id="p8h-fL-LYL"/>
+                        <outlet property="numPomodorosLabel" destination="EAv-aZ-KpO" id="iLp-xc-mwD"/>
+                        <outlet property="pomodoroStateIcon" destination="hUA-Us-PYS" id="BLd-V9-QUZ"/>
                         <outlet property="pomodoroStateLabel" destination="QxV-SF-o0A" id="zxa-P8-PPK"/>
                         <outlet property="secondLabel" destination="R8o-tx-gc9" id="evo-VJ-IYs"/>
-                        <outlet property="startButton" destination="FNI-gC-2Xb" id="OCa-3M-0ke"/>
-                        <outlet property="stopButton" destination="GCk-o2-88d" id="DcL-WK-Mb4"/>
+                        <outlet property="startStopButton" destination="FNI-gC-2Xb" id="6Pn-2m-kzv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
         </scene>
-        <!--Settings View Controller-->
-        <scene sceneID="qjF-9j-9HR">
-            <objects>
-                <viewController id="yiZ-L6-ETe" customClass="SettingsViewController" customModule="tomato" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0bA-Oz-shh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="k6V-7K-osF"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CGM-fD-Mq1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="861" y="139"/>
-        </scene>
     </scenes>
+    <resources>
+        <image name="PlayButton" width="90" height="90"/>
+    </resources>
 </document>

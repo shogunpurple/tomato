@@ -15,13 +15,14 @@ enum PomodoroState: String {
 }
 
 private struct TimePeriod {
-    static let POMODORO = 1 * 5
-    static let REST = 1 * 5
-    static let LONG_REST = 1 * 5
+    static let POMODORO = 1 * 2
+    static let REST = 1 * 2
+    static let LONG_REST = 1 * 10
 }
 
 struct PomodoroViewModel {
     var pomodoroState: PomodoroState
+    var nextPomodoroState: PomodoroState
     var numPomodoros: Int
     var secondsLeft: Int
     var finishTimestamp: Int?
@@ -29,7 +30,8 @@ struct PomodoroViewModel {
     
     init() {
         pomodoroState = .pomodoro
-        numPomodoros = 5
+        nextPomodoroState = .rest
+        numPomodoros = 0
         secondsLeft = TimePeriod.POMODORO
         finishTimestamp = nil
         started = false
@@ -38,21 +40,24 @@ struct PomodoroViewModel {
     mutating func updatePomodoroState() -> Void {
         switch pomodoroState {
             case .pomodoro:
-                numPomodoros += 1
                 // Timer 25 minutes
-                secondsLeft = TimePeriod.POMODORO
-                pomodoroState = .rest
+                secondsLeft = numPomodoros == 4 ? TimePeriod.LONG_REST : TimePeriod.REST
+                pomodoroState = numPomodoros == 4 ? .longRest : .rest
+                nextPomodoroState = .pomodoro
                 break
             case .rest:
+                numPomodoros += 1
                 // Timer 5 minutes
-                secondsLeft = TimePeriod.REST
-                pomodoroState = numPomodoros == 5 ? .longRest : .pomodoro
+                secondsLeft = TimePeriod.POMODORO
+                pomodoroState = .pomodoro
+                nextPomodoroState = numPomodoros == 3 ? .longRest : .rest
                 break
             case .longRest:
-                // Timer 15 minutes
-                secondsLeft = TimePeriod.LONG_REST
-                pomodoroState = .pomodoro
                 numPomodoros = 0
+                // Timer 15 minutes
+                secondsLeft = TimePeriod.POMODORO
+                pomodoroState = .pomodoro
+                nextPomodoroState = .rest
             }
         }
 
@@ -63,4 +68,7 @@ struct PomodoroViewModel {
     func stopTimer() {
         
     }
+
 }
+
+
