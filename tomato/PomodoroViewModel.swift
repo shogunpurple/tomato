@@ -15,9 +15,9 @@ enum PomodoroState: String {
 }
 
 private struct TimePeriod {
-    static let POMODORO = 1 * 2
-    static let REST = 1 * 2
-    static let LONG_REST = 1 * 10
+    static let POMODORO = 60 * 25
+    static let REST = 60 * 5
+    static let LONG_REST = 60 * 15
 }
 
 struct PomodoroViewModel {
@@ -41,13 +41,13 @@ struct PomodoroViewModel {
         switch pomodoroState {
             case .pomodoro:
                 // Timer 25 minutes
-                secondsLeft = numPomodoros == 4 ? TimePeriod.LONG_REST : TimePeriod.REST
-                pomodoroState = numPomodoros == 4 ? .longRest : .rest
+                secondsLeft = numPomodoros == 3 ? TimePeriod.LONG_REST : TimePeriod.REST
+                pomodoroState = numPomodoros == 3 ? .longRest : .rest
                 nextPomodoroState = .pomodoro
                 break
             case .rest:
-                numPomodoros += 1
                 // Timer 5 minutes
+                numPomodoros += 1
                 secondsLeft = TimePeriod.POMODORO
                 pomodoroState = .pomodoro
                 nextPomodoroState = numPomodoros == 3 ? .longRest : .rest
@@ -60,15 +60,6 @@ struct PomodoroViewModel {
                 nextPomodoroState = .rest
             }
         }
-
-    func startTimer() {
-        
-    }
-    
-    func stopTimer() {
-        
-    }
-
 }
 
 
